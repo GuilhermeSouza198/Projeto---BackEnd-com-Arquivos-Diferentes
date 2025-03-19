@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto - BackEnd com Arquivos Diferentes</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Projeto - BackEnd com Arquivos Diferentes</h1>
+        <p><strong>Nome:</strong> <span id="nome">Carregando...</span></p>
+        <p><strong>Curso:</strong> <span id="curso">Carregando...</span></p>
+        <p><strong>Projeto:</strong> <span id="projeto">Carregando...</span></p>
+
+        <a href="/imc">Calculadora de IMC</a>
+        <a href="/saibamais">Saiba Mais</a>
+
+        <h2>Arquivos do Projeto</h2>
+        <a href="/ppt">Apresentação</a>
+        <a href="/livro">Livro PDF</a>
+        <a href="/json">Ver JSON</a>
+    </div>
+
+    <script>
+        fetch('/json')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('nome').innerText = data.nome;
+                document.getElementById('curso').innerText = data.curso;
+                document.getElementById('projeto').innerText = data.projeto;
+            })
+            .catch(err => {
+                console.error("Erro ao carregar JSON:", err);
+                document.getElementById('nome').innerText = "Erro ao carregar";
+            });
+    </script>
+</body>
+</html>
